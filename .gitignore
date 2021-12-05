@@ -1,2 +1,5 @@
 distribution
 /bin
+*.iml
+.idea/
+target/

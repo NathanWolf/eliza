@@ -7,17 +7,16 @@
 
 package codeanticode.eliza;
 
-import processing.core.*;
-
 /**
  *  Eliza main class.
  *  Stores the processed script.
  *  Does the input transformations.
  */
 public class Eliza {
-  public Eliza(PApplet parent) {
-		this.parent = parent;
-		
+    private final FileLoader fileLoader;
+
+  public Eliza(FileLoader fileLoader) {
+      this.fileLoader = fileLoader;
 		readDefaultScript();
   }
 	
@@ -201,7 +200,7 @@ public class Eliza {
 	public boolean readScript(String script) {
 		clearScript();
 		
-    String[] lines = parent.loadStrings(script);
+    String[] lines = fileLoader.readFile(script);
     if (lines == null || lines.length == 0) {
       System.err.println("Cannot load Eliza script!");
       return false;
@@ -345,9 +344,7 @@ public class Eliza {
         }
         return work;
     }
-    
-    PApplet parent;
-    
+
     final boolean echoInput = false;
     final boolean printData = false;
 
